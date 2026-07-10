@@ -1,6 +1,6 @@
- 🚁 Drone Finder - Pocket Edition
+### 🚁 Drone Finder - Pocket Edition
 
-An EdgeTX Lua script that turns your radio into a lost-drone locator using ELRS/CRSF RSSI telemetry — adapted for the RadioMaster Pocket (128×64 monochrome LCD, button/scroll-wheel navigation).
+## An EdgeTX Lua script that turns your radio into a lost-drone locator using ELRS/CRSF RSSI telemetry — adapted for the RadioMaster Pocket (128×64 monochrome LCD, button/scroll-wheel navigation).
 
 > This is a derivative of [Drone Finder](https://github.com/p3gass/Drone-Finder-ELRS) by michalek.me, originally built for the RadioMaster TX15's color touchscreen. See [Credits & License](#credits--license) below.
 
