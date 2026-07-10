@@ -1,12 +1,12 @@
-# 🚁 Drone Finder - Pocket Edition
+ 🚁 Drone Finder - Pocket Edition
 
-An EdgeTX Lua script that turns your radio into a lost-drone locator using ELRS/CRSF RSSI telemetry — adapted for the **RadioMaster Pocket** (128×64 monochrome LCD, button/scroll-wheel navigation).
+An EdgeTX Lua script that turns your radio into a lost-drone locator using ELRS/CRSF RSSI telemetry — adapted for the RadioMaster Pocket (128×64 monochrome LCD, button/scroll-wheel navigation).
 
-> This is a derivative of [Drone Finder](https://github.com/p3gass/Drone-Finder-ELRS) by **michalek.me**, originally built for the RadioMaster TX15's color touchscreen. See [Credits & License](#credits--license) below.
+> This is a derivative of [Drone Finder](https://github.com/p3gass/Drone-Finder-ELRS) by michalek.me, originally built for the RadioMaster TX15's color touchscreen. See [Credits & License](#credits--license) below.
 
 ---
 
-## ✨ Features
+ ✨ Features
 
 - 📡 Works with ELRS/CRSF telemetry (`1RSS`, `RSNR`, or `RQly`, whichever your RX exposes)
 - 📶 Horizontal signal-strength bar gauge with percent readout
@@ -16,42 +16,42 @@ An EdgeTX Lua script that turns your radio into a lost-drone locator using ELRS/
 - ⚠️ Low-voltage warning (blinking/inverted text below 3.4V/cell)
 - 🖥 Compact layout built for 128×64 monochrome displays — no touchscreen required
 
-## Why this fork exists
+ Why this fork exists
 
-The original script uses EdgeTX's `lvgl` API for its UI — circular gauges, RGB color fills, touch-driven toggles. That API only exists on **color touchscreen** EdgeTX radios (TX15, TX16S, Zorro, etc.). The RadioMaster Pocket has a 1.6" **128×64 monochrome** LCD with no touch panel, so `lvgl` is unavailable and the original UI never renders.
+The original script uses EdgeTX's `lvgl` API for its UI — circular gauges, RGB color fills, touch-driven toggles. That API only exists on color touchscreen EdgeTX radios (TX15, TX16S, Zorro, etc.). The RadioMaster Pocket has a 1.6" 128×64 monochrome LCD with no touch panel, so `lvgl` is unavailable and the original UI never renders.
 
 This version replaces the entire UI layer with the standard `lcd.draw*` API that every EdgeTX mono radio supports, and reworks the layout to fit 128×64. Sensor detection, signal smoothing, and battery/cell logic are unchanged from the original.
 
-## Installation
+ Installation
 
 1. Copy `Drone-Finder-Pocket.lua` to `/SCRIPTS/TELEMETRY/` on your radio's SD card.
-2. On the radio: open your model, go to the **Telemetry** screens, add a new screen, set its type to **Script**, and select this file.
+2. On the radio: open your model, go to the Telemetry screens, add a new screen, set its type to Script, and select this file.
 3. Make sure ELRS telemetry is actually reaching the radio:
    - RX bound and linked (solid LED, not blinking)
-   - ExpressLRS **Telemetry Ratio** set to `Std` (or tighter, e.g. `1:16`) — not `Off`
-   - Run **Discover New Sensors** under Model Setup → Telemetry after changing the ratio
+   - ExpressLRS Telemetry Ratio set to `Std` (or tighter, e.g. `1:16`) — not `Off`
+   - Run Discover New Sensors under Model Setup → Telemetry after changing the ratio
 
-## Usage
+ Usage
 
 - The bar gauge shows signal strength as a percentage; the number above the bar is the same value.
 - Sound gets faster/higher-pitched as signal strengthens — walk toward the beeping.
 - Press **ENT** (scroll wheel click) on the telemetry screen to mute/unmute the beeper.
 - Low cell voltage (<3.40V/cell) blinks the battery line so you don't miss it mid-search.
 
-## Requirements
+ Requirements
 
 - RadioMaster Pocket (or any EdgeTX radio with a 128×64 monochrome LCD)
 - EdgeTX firmware with Lua telemetry script support
 - ELRS receiver reporting `1RSS`, `RSNR`, or `RQly` via CRSF telemetry
 
-## Credits & License
+ Credits & License
 
-Original concept, sensor-reading logic, and signal-smoothing algorithm by **[michalek.me](https://github.com/p3gass/Drone-Finder-ELRS)**, licensed under the **GNU General Public License v3.0**.
+Original concept, sensor-reading logic, and signal-smoothing algorithm by [michalek.me](https://github.com/p3gass/Drone-Finder-ELRS) , licensed under the GNU General Public License v3.0.
 
 This fork modifies the UI/rendering layer to target monochrome, non-touch EdgeTX displays (see script header for a full list of changes) and is distributed under the same license.
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-This program is distributed in the hope that it will be useful, but **WITHOUT ANY WARRANTY**; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the [GNU General Public License](https://www.gnu.org/licenses/gpl-3.0.en.html) for more details.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the [GNU General Public License](https://www.gnu.org/licenses/gpl-3.0.en.html) for more details.
 
 A copy of the license should be included as `LICENSE` in this repository. If not, see <https://www.gnu.org/licenses/>.
